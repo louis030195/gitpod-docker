@@ -1,8 +1,15 @@
 # gitpod-docker
 
-TODO
+Built GitPod Docker images.
 
-## How to release
+## Google Cloud environment
+
+```dockerfile
+FROM ghcr.io/louis030195/gitpod-google-cloud:latest
+```
+
+## Development
+### How to release
 
 1. `git add .`
 2. `git commit -m "my message"`
