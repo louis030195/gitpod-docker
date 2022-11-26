@@ -6,8 +6,8 @@ release: ## Release a new version
 	echo "Committing '$$VERSION: $$COMMIT'"; \
 	git commit -m "$$VERSION: $$COMMIT"; \
 	git push origin main; \
-	git tag v$$VERSION; \
-	git push origin v$$VERSION
+	git tag $$VERSION; \
+	git push origin $$VERSION
 
 .PHONY: help
 
