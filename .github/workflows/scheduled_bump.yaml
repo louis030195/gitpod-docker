@@ -1,0 +1,29 @@
+name: Build Docker images, push to Docker Hub
+
+on:
+  schedule:
+    - cron: '0 0 * * *'
+  push:
+    branches:
+      - main
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      -
+        name: Checkout
+        uses: actions/checkout@v2
+      -
+        name: Make a release
+        run: |
+          	VERSION=$(git describe --tags --abbrev=0)
+            # bump version
+            VERSION=$(echo $VERSION | awk -F. '{$NF = $NF + 1;} 1' | sed 's/ /./g')
+            echo "Releasing version $VERSION"
+            git add .
+            echo "Committing '$VERSION: 🙈 $(date +%Y-%m-%d_%H:%M:%S) 🙈'"
+            git commit -m "$VERSION: $COMMIT"
+            git push origin main
+            git tag $VERSION
+            git push origin $VERSION
