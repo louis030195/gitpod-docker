@@ -70,3 +70,5 @@ jobs:
         uses: softprops/action-gh-release@v1
         env:
           GITHUB_REPOSITORY: louis030195/gitpod-docker
+        with:
+          tag_name: ${{ env.VERSION }}
