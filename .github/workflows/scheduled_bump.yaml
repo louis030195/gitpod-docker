@@ -1,4 +1,4 @@
-name: Build Docker images, push to Docker Hub
+name: Scheduled release
 
 on:
   schedule:
@@ -14,11 +14,12 @@ jobs:
       -
         name: Checkout
         uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
       -
         name: Make a release
         run: |
           VERSION=$(git describe --tags $(git rev-list --tags --max-count=1))
-          # bump version
           VERSION=$(echo $VERSION | awk -F. '{$NF = $NF + 1;} 1' | sed 's/ /./g')
           echo "Releasing version $VERSION"
           git add .
