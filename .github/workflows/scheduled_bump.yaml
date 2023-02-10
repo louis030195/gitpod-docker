@@ -19,6 +19,8 @@ jobs:
       -
         name: Make a release
         run: |
+          git config --global user.email "louis.beaumont@gmail.com"
+          git config --global user.name "louis030195"
           VERSION=$(git describe --tags $(git rev-list --tags --max-count=1))
           VERSION=$(echo $VERSION | awk -F. '{$NF = $NF + 1;} 1' | sed 's/ /./g')
           echo "Releasing version $VERSION"
