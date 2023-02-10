@@ -31,6 +31,11 @@ jobs:
           git tag $VERSION
           git push origin $VERSION
       -
+        name: Set version in env
+        run: |
+          VERSION=$(cat VERSION.txt)
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+      -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v1
       -
@@ -58,7 +63,6 @@ jobs:
           platforms: linux/amd64
           push: true
           tags: |
-            VERSION=$(cat VERSION.txt)
             louis030195/gitpod-google-cloud:latest
             louis030195/gitpod-google-cloud:$VERSION
             ghcr.io/louis030195/gitpod-google-cloud:latest
