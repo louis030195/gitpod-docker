@@ -13,6 +13,6 @@ RUN echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] http://packages.c
 USER gitpod
 ENV KUBECONFIG $HOME/.kube/config
 RUN curl -sL https://firebase.tools | bash
-FROM docker
-COPY --from=docker/buildx-bin:latest /buildx /usr/libexec/docker/cli-plugins/docker-buildx
-RUN docker buildx version
+# FROM docker
+# COPY --from=docker/buildx-bin:latest /buildx /usr/libexec/docker/cli-plugins/docker-buildx
+# RUN docker buildx version
