@@ -30,7 +30,6 @@ jobs:
           git push origin main
           git tag $VERSION
           git push origin $VERSION
-          echo ::set-output name=GIT_TAG_NAME::$VERSION
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v1
@@ -59,10 +58,11 @@ jobs:
           platforms: linux/amd64
           push: true
           tags: |
+            VERSION=$(cat VERSION.txt)
             louis030195/gitpod-google-cloud:latest
-            louis030195/gitpod-google-cloud:${{ steps.get_tag_name.outputs.GIT_TAG_NAME}}
+            louis030195/gitpod-google-cloud:$VERSION
             ghcr.io/louis030195/gitpod-google-cloud:latest
-            ghcr.io/louis030195/gitpod-google-cloud:${{ steps.get_tag_name.outputs.GIT_TAG_NAME}}
+            ghcr.io/louis030195/gitpod-google-cloud:$VERSION
       - 
         name: Release
         uses: softprops/action-gh-release@v1
