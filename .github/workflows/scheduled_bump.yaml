@@ -17,7 +17,7 @@ jobs:
       -
         name: Make a release
         run: |
-          VERSION=$(git describe --tags --abbrev=0)
+          VERSION=$(git describe --tags $(git rev-list --tags --max-count=1))
           # bump version
           VERSION=$(echo $VERSION | awk -F. '{$NF = $NF + 1;} 1' | sed 's/ /./g')
           echo "Releasing version $VERSION"
